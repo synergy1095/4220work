@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Chat App</title>
+
+   <link rel="shortcut icon" href="img/favicon-chat.png" />
+   <!-- Import Google Fonts -->
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Rajdhani:400,700" rel="stylesheet">
+   <!-- Import materialize.css -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+   <!-- Import custom css -->
+   <link rel="stylesheet" href="css/style.css">
+
+   <style>
+      [v-cloak] {
+         display: none;
+      }
+   </style>
+</head>
+
+<body>
+   <div id="chat-app">
+      <div class="row">
+
+         <!-- users column -->
+         <div class="col s3">
+
+            <!-- active users component-->
+            <users-component v-bind:users="users"></users-component>
+
+            <!-- start user join -->
+            <div class="user-login" v-show="!loggedIn">
+               <input v-model="userName" placeholder="name" type="text" class="u-full-width">
+               <button v-on:click="joinUser" :disabled="!userName" class="btn-small waves-effect waves-light" type="submit">
+                  Join
+               </button>
+
+
+            </div>
+            <!-- end user join -->
+         </div>
+
+
+         <!-- message box column-->
+         <div class="col s9" v-show="loggedIn">
+
+            <!-- chat box -->
+            <chat-component v-bind:content="messages"></chat-component>
+
+            <!-- start form to send new message to chat box -->
+            <div class="controls" class="field has-addons">
+               <input v-model="message" placeholder="write message" type="text" class="u-full-width">
+               <button v-on:click="sendMessage" :disabled="!message" class="btn-small waves-effect waves-light" type="submit">
+                  <i class="material-icons left">send</i>Send
+               </button>
+            </div>
+            <!-- end form to send new message to chat box -->
+
+         </div>
+
+      </div>
+   </div>
+
+   <script type="text/javascript" src="https://unpkg.com/vue@2.5.15/dist/vue.min.js"></script>
+   <script type="text/javascript" src="https://unpkg.com/socket.io-client@2.1.0/dist/socket.io.js"></script>
+   <script type="text/javascript" src="app.js"></script>
+</body>
+
+</html>

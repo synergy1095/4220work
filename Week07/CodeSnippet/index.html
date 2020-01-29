@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Code Snippets</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div id="snippets" class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Code</h3>
+                <textarea v-model="code"></textarea>
+            </div>
+            <div class="col">
+                <h3>Plain Text</h3>
+                <div class="card p-2" v-text="code"></div>
+                <h3>HTML</h3>
+                <div class="card p-2" v-html="code"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript" src="app.js"></script>    
+</body>
+</html>

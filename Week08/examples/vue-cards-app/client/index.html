@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Card App</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cards" v-cloak>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg">
+            <h1 class="display-2">Deck of Cards</h1>
+            <p class="lead">demo deck of cards app</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-cloak class="container">
+      <div class="row">
+        <div class="col" v-for="card in deck.cards">
+          <img v-bind:src="card.image" width="50%">
+          <p>
+            <input v-if="deck.cards && isPlaying" type="checkbox" :value="card.code" id="card.code" v-model="selectedCards">
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg">
+
+          <template v-if="!deck.cards">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="drawCards">Draw Cards</label>
+                <input v-model="numberOfCards" class="form-control" id="drawCards" placeholder="Number of cards to draw">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-check">
+                <input v-model="shuffle" class="form-check-input" type="checkbox" id="shuffleCheck">
+                <label class="form-check-label" for="shuffleCheck">Shuffle</label>
+              </div>
+            </div>
+
+            <button v-on:click="drawCards" class="btn btn-dark">Draw {{numberOfCards}}</button>
+            <button v-on:click="playGame" class="btn btn-dark">Play</button>
+          </template>
+
+          <button v-if="deck.cards && isPlaying" v-on:click="throwaway" class="btn btn-dark">Throwaway</button>
+          <button v-if="deck.cards && !isPlaying" v-on:click="clear" class="btn btn-dark">Clear</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="https://unpkg.com/vue@2.5.15/dist/vue.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Chuck Noris Facts</title>
+    <style>
+        .highlightText {
+            background: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chuck" class="container bg-faded text-center">
+        <h1>{{appName}}</h1>
+        <hr/>
+        <div class="row">
+            
+            <div class="col-sm mx-auto">
+                <div class="row">
+                    <span class="label label-default col-5">Select a Category</span>
+                    <select class="form-control mx-auto col-7" v-model="selectedValue">
+                        <option value="all" selected>all</option>
+                        <option v-for="item in categories" :value="item">{{item}}</option>
+                    </select>
+                </div>
+                <hr />
+                <button type="button" class="btn mx-auto row" v-on:click="getRandomFact">Get Random Fact</button>
+                <!-- {{selectedValue}} -->
+                <hr/>
+                <div class="row">{{currentFact}}</div>
+                <div v-if="previousFacts.length">
+                    <hr/>
+                    <h4>Previous Facts:</h4>
+                </div>
+                <ol class="text-left">
+                    <li v-for="fact in previousFacts">{{fact}}</li>
+                </ol>
+            </div>
+
+            <div class="col-sm mx-auto">
+                <input type="text" class="form-control" id="search" v-model="searchVal" v-on:change="searchHandler">
+                <hr/>
+                <label for="search">Search Chuck Facts (press enter to search) </label>
+                <!-- {{searchVal}} -->
+                <div v-if="previousSearches.length">
+                    <hr/>
+                    <h4>Previous Searches:</h4>
+                </div>
+                <ol class="text-left">
+                    <li v-for="sear in previousSearches">{{sear}}</li>
+                </ol>
+
+                <div v-if="searchRes.length">
+                    <hr/>
+                    <h4>Search Results:</h4>
+                </div>
+                <ul class="text-left">
+                    <li v-for="res in searchRes" v-html="res.value"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+
+</body>
+
+</html>
